@@ -1,0 +1,1268 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rafael Fernandes — Cybersecurity · Blockchain · IA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#04060e;
+  --bg2:#080c1a;
+  --bg3:#0c1122;
+  --panel:#101828;
+  --border:rgba(255,255,255,.06);
+  --border2:rgba(255,255,255,.11);
+  --text:#e4eaf7;
+  --muted:#5d7092;
+  --dim:#1e2c44;
+  --lime:#3dffa0;
+  --lime-dim:rgba(61,255,160,.07);
+  --lime-glow:rgba(61,255,160,.2);
+  --blue:#5ba4ff;
+  --blue-dim:rgba(91,164,255,.07);
+  --violet:#b97fff;
+  --violet-dim:rgba(185,127,255,.07);
+  --amber:#ffbd40;
+  --amber-dim:rgba(255,189,64,.07);
+  --red:#ff6080;
+  --sans:'Inter',sans-serif;
+  --mono:'JetBrains Mono',monospace;
+  --display:'Bebas Neue',sans-serif;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);overflow-x:hidden;-webkit-tap-highlight-color:transparent}
+
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:900;height:56px;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(1rem,5vw,3rem);border-bottom:1px solid var(--border);background:rgba(4,6,14,.88);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)}
+.logo{font-family:var(--display);font-size:20px;letter-spacing:.1em;color:var(--lime);text-decoration:none}
+.logo span{color:var(--muted)}
+.nav-right{display:flex;align-items:center;gap:1rem}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{font-family:var(--mono);font-size:10px;color:var(--muted);text-decoration:none;letter-spacing:.12em;text-transform:uppercase;transition:color .2s}
+.nav-links a:hover{color:var(--lime)}
+.nav-cta{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:7px 18px;border:1px solid var(--lime);color:var(--lime);border-radius:3px;text-decoration:none;transition:all .2s}
+.nav-cta:hover{background:var(--lime);color:#000}
+@media(max-width:640px){.nav-links{display:none}}
+
+/* ── HERO ── */
+.hero{min-height:100dvh;display:flex;align-items:center;padding:80px clamp(1rem,5vw,3rem) 3rem;position:relative;overflow:hidden}
+.hero-glow{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 70% 60% at 80% 50%,rgba(61,255,160,.04),transparent 70%),radial-gradient(ellipse 50% 70% at 10% 80%,rgba(91,164,255,.04),transparent 70%)}
+.hero-content{position:relative;z-index:1;max-width:680px}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:10px;color:var(--lime);letter-spacing:.15em;text-transform:uppercase;margin-bottom:1.5rem;padding:6px 14px;border:1px solid rgba(61,255,160,.2);border-radius:20px;background:rgba(61,255,160,.04)}
+.hero-dot{width:6px;height:6px;border-radius:50%;background:var(--lime);animation:pulse 2s ease infinite}
+@keyframes pulse{0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(61,255,160,.4)}50%{opacity:.6;box-shadow:0 0 0 6px rgba(61,255,160,0)}}
+h1.name{font-family:var(--display);font-size:clamp(58px,12vw,110px);letter-spacing:.04em;line-height:.92;margin-bottom:.4rem}
+h1.name em{color:var(--lime);font-style:normal}
+.hero-role{font-family:var(--mono);font-size:11px;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;margin-bottom:1.5rem}
+.hero-bio{font-size:clamp(15px,2.5vw,18px);line-height:1.8;color:var(--muted);margin-bottom:2rem;max-width:520px}
+.hero-bio strong{color:var(--text);font-weight:500}
+.hero-tags{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:2rem}
+.tag{font-family:var(--mono);font-size:10px;padding:5px 12px;border-radius:3px;letter-spacing:.06em;text-transform:uppercase;border:1px solid}
+.tag-g{border-color:rgba(61,255,160,.25);color:var(--lime);background:var(--lime-dim)}
+.tag-v{border-color:rgba(185,127,255,.25);color:var(--violet);background:var(--violet-dim)}
+.tag-b{border-color:rgba(91,164,255,.25);color:var(--blue);background:var(--blue-dim)}
+.tag-r{border-color:rgba(255,96,128,.25);color:var(--red);background:rgba(255,96,128,.06)}
+.tag-a{border-color:rgba(255,189,64,.22);color:var(--amber);background:var(--amber-dim)}
+.hero-btns{display:flex;gap:.75rem;flex-wrap:wrap}
+.btn{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;padding:12px 26px;border-radius:3px;text-decoration:none;transition:all .22s;display:inline-block}
+.btn-fill{background:var(--lime);color:#000;font-weight:600}
+.btn-fill:hover{opacity:.88;transform:translateY(-1px);box-shadow:0 8px 24px rgba(61,255,160,.2)}
+.btn-ghost{color:var(--muted);border:1px solid var(--border2)}
+.btn-ghost:hover{color:var(--text);border-color:var(--muted)}
+/* hero stats strip */
+.hero-stats{display:flex;gap:2rem;margin-top:2.5rem;padding-top:2rem;border-top:1px solid var(--border)}
+.stat-num{font-family:var(--display);font-size:36px;color:var(--lime);line-height:1}
+.stat-label{font-family:var(--mono);font-size:9px;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-top:4px}
+
+/* ── SECTION BASE ── */
+.section{padding:clamp(60px,8vw,100px) clamp(1rem,5vw,3rem);position:relative}
+.sec-head{display:flex;align-items:center;gap:1.25rem;margin-bottom:clamp(2rem,5vw,3.5rem)}
+.sec-num{font-family:var(--mono);font-size:10px;color:var(--lime);opacity:.45;letter-spacing:.12em}
+.sec-title{font-family:var(--display);font-size:clamp(30px,5vw,46px);letter-spacing:.06em}
+.sec-rule{flex:1;height:1px;background:linear-gradient(to right,var(--border2),transparent)}
+
+/* ── INTERACTIVE IMAGES ── */
+.canvas-wrap{width:100%;border-radius:10px;overflow:hidden;position:relative;background:var(--bg2);border:1px solid var(--border);touch-action:none;cursor:grab;user-select:none}
+.canvas-wrap:active{cursor:grabbing}
+.canvas-wrap canvas{display:block;width:100%;height:100%}
+.canvas-label{position:absolute;bottom:10px;right:12px;font-family:var(--mono);font-size:9px;color:rgba(255,255,255,.3);letter-spacing:.08em;pointer-events:none}
+.canvas-hint{position:absolute;top:10px;left:12px;font-family:var(--mono);font-size:9px;color:rgba(61,255,160,.5);letter-spacing:.06em;pointer-events:none;display:flex;align-items:center;gap:5px}
+.canvas-hint-dot{width:4px;height:4px;border-radius:50%;background:var(--lime);animation:pulse 1.8s ease infinite}
+
+/* ── ARTICLES GRID ── */
+#articles{background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.articles-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,340px),1fr));gap:1px;background:var(--border);border:1px solid var(--border);border-radius:6px;overflow:hidden}
+.art-card{background:var(--bg2);padding:clamp(1.25rem,3vw,2rem);text-decoration:none;display:block;position:relative;overflow:hidden;transition:background .2s}
+.art-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--lime),var(--blue));transform:scaleX(0);transform-origin:left;transition:transform .35s}
+.art-card:hover{background:var(--bg3)}
+.art-card:hover::after{transform:scaleX(1)}
+.art-card.featured{grid-column:1/-1}
+.art-img{width:100%;height:clamp(140px,25vw,220px);border-radius:6px;overflow:hidden;margin-bottom:1.1rem;position:relative;background:var(--panel)}
+.art-img canvas,.art-img svg{width:100%!important;height:100%!important;display:block}
+.art-img-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(8,12,26,.85));pointer-events:none}
+.art-meta{display:flex;align-items:center;gap:8px;margin-bottom:.75rem;flex-wrap:wrap}
+.art-tag{font-family:var(--mono);font-size:9px;padding:3px 9px;border-radius:2px;letter-spacing:.07em;text-transform:uppercase;border:1px solid}
+.art-tag-g{border-color:rgba(61,255,160,.3);color:var(--lime);background:var(--lime-dim)}
+.art-tag-v{border-color:rgba(185,127,255,.3);color:var(--violet);background:var(--violet-dim)}
+.art-tag-r{border-color:rgba(255,96,128,.28);color:var(--red);background:rgba(255,96,128,.06)}
+.art-tag-a{border-color:rgba(255,189,64,.25);color:var(--amber);background:var(--amber-dim)}
+.art-date{font-family:var(--mono);font-size:9px;color:var(--muted)}
+.art-title{font-family:var(--display);font-size:clamp(18px,3vw,22px);letter-spacing:.04em;line-height:1.2;color:var(--text);margin-bottom:.6rem}
+.art-card.featured .art-title{font-size:clamp(22px,4vw,32px)}
+.art-excerpt{font-size:14px;line-height:1.75;color:var(--muted);margin-bottom:1rem}
+.art-read{font-family:var(--mono);font-size:10px;color:var(--lime);letter-spacing:.07em;text-transform:uppercase;display:flex;align-items:center;gap:5px}
+.art-arrow{transition:transform .2s}
+.art-card:hover .art-arrow{transform:translateX(5px)}
+
+/* ── TECH CARDS ── */
+.tech-strip{background:var(--panel);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:clamp(1.5rem,4vw,2.5rem) clamp(1rem,5vw,3rem)}
+.tech-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,260px),1fr));gap:1rem}
+.t-card{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:1.5rem;transition:border-color .25s,transform .25s;position:relative;overflow:hidden}
+.t-card:hover{border-color:rgba(61,255,160,.18);transform:translateY(-3px)}
+.t-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--accent,var(--lime));opacity:0;transition:opacity .3s}
+.t-card:hover::before{opacity:1}
+.t-icon{width:42px;height:42px;border-radius:8px;display:flex;align-items:center;justify-content:center;margin-bottom:1rem}
+.t-icon.g{background:var(--lime-dim);border:1px solid rgba(61,255,160,.2)}
+.t-icon.b{background:var(--blue-dim);border:1px solid rgba(91,164,255,.2)}
+.t-icon.v{background:var(--violet-dim);border:1px solid rgba(185,127,255,.2)}
+.t-title{font-family:var(--display);font-size:20px;letter-spacing:.05em;margin-bottom:.5rem}
+.t-desc{font-size:13px;line-height:1.7;color:var(--muted)}
+.t-stat{font-family:var(--mono);font-size:9px;color:var(--dim);letter-spacing:.08em;margin-top:.75rem;padding-top:.75rem;border-top:1px solid var(--border)}
+
+/* ── ABOUT ── */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,5vw,4rem);align-items:start}
+@media(max-width:720px){.about-grid{grid-template-columns:1fr}}
+.about-img-box{border-radius:8px;overflow:hidden;border:1px solid var(--border2);aspect-ratio:3/4;position:relative;background:var(--bg3);cursor:grab;touch-action:none}
+.about-img-box:active{cursor:grabbing}
+.about-img-box canvas{width:100%!important;height:100%!important;display:block}
+.about-h{font-family:var(--display);font-size:clamp(28px,5vw,40px);letter-spacing:.04em;line-height:1.1;margin-bottom:1.25rem}
+.about-h em{color:var(--lime);font-style:normal}
+.about-p{font-size:clamp(14px,2.5vw,17px);line-height:1.85;color:var(--muted);margin-bottom:1.1rem}
+.about-p strong{color:var(--text);font-weight:500}
+.skills{margin-top:2rem;display:grid;grid-template-columns:1fr 1fr;gap:.75rem}
+@media(max-width:480px){.skills{grid-template-columns:1fr}}
+.s-card{background:var(--panel);border:1px solid var(--border);border-radius:6px;padding:1.1rem}
+.s-card-title{font-family:var(--mono);font-size:9px;color:var(--lime);letter-spacing:.12em;text-transform:uppercase;margin-bottom:.6rem}
+.s-pills{display:flex;flex-wrap:wrap;gap:5px}
+.s-pill{font-family:var(--mono);font-size:9px;padding:3px 9px;background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:2px;color:var(--muted);transition:all .18s}
+.s-pill:hover{border-color:rgba(61,255,160,.2);color:var(--lime)}
+
+/* ── TIMELINE ── */
+.timeline{margin-top:2rem;border-left:1px solid var(--border2);padding-left:1.4rem;display:flex;flex-direction:column;gap:1.5rem}
+.tl{position:relative}
+.tl::before{content:'';position:absolute;left:-1.65rem;top:5px;width:9px;height:9px;border-radius:50%;border:1px solid var(--lime);background:var(--bg);box-sizing:border-box}
+.tl.active::before{background:var(--lime);box-shadow:0 0 8px rgba(61,255,160,.4)}
+.tl-y{font-family:var(--mono);font-size:9px;color:var(--lime);letter-spacing:.1em;margin-bottom:3px;opacity:.7}
+.tl-t{font-size:15px;color:var(--text);margin-bottom:2px;font-weight:500}
+.tl-s{font-family:var(--mono);font-size:10px;color:var(--muted)}
+
+/* ── WRITE / FORM ── */
+#write{background:var(--bg2);border-top:1px solid var(--border)}
+.write-layout{display:grid;grid-template-columns:1fr 2fr;gap:clamp(2rem,5vw,4rem);align-items:start}
+@media(max-width:700px){.write-layout{grid-template-columns:1fr}}
+.write-intro h3{font-family:var(--display);font-size:26px;letter-spacing:.04em;margin-bottom:.75rem}
+.write-intro p{font-size:14px;line-height:1.8;color:var(--muted);margin-bottom:.75rem}
+.form-box{background:var(--panel);border:1px solid var(--border);border-radius:8px;padding:clamp(1.25rem,3vw,2rem)}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:.75rem}
+@media(max-width:480px){.frow{grid-template-columns:1fr}}
+.fg{display:flex;flex-direction:column;gap:5px;margin-bottom:.75rem}
+.fg label{font-family:var(--mono);font-size:9px;color:var(--muted);letter-spacing:.1em;text-transform:uppercase}
+.fg input,.fg select,.fg textarea{background:var(--bg2);border:1px solid var(--border2);border-radius:4px;padding:9px 13px;font-family:var(--sans);font-size:13px;color:var(--text);outline:none;width:100%;transition:border-color .2s,box-shadow .2s}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--lime);box-shadow:0 0 0 3px rgba(61,255,160,.07)}
+.fg textarea{resize:vertical;min-height:150px;font-family:var(--sans);font-size:14px;line-height:1.7}
+select option{background:var(--panel)}
+.f-btn{width:100%;padding:13px;background:var(--lime);color:#000;border:none;border-radius:4px;font-family:var(--display);font-size:17px;letter-spacing:.08em;cursor:pointer;font-weight:700;transition:opacity .2s,transform .15s,box-shadow .2s}
+.f-btn:hover{opacity:.9;transform:translateY(-1px);box-shadow:0 6px 20px rgba(61,255,160,.18)}
+.posted{margin-top:2.5rem;display:none}
+.posted-head{font-family:var(--mono);font-size:9px;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;margin-bottom:.75rem;padding-bottom:.5rem;border-bottom:1px solid var(--border)}
+.pi{display:flex;align-items:center;justify-content:space-between;gap:.75rem;padding:.9rem 0;border-bottom:1px solid var(--border)}
+.pi-t{font-size:14px;color:var(--text);font-weight:500;margin-bottom:2px}
+.pi-s{font-family:var(--mono);font-size:9px;color:var(--muted)}
+.pi-acts{display:flex;gap:5px;flex-shrink:0}
+.pbtn{font-family:var(--mono);font-size:9px;letter-spacing:.06em;text-transform:uppercase;padding:5px 11px;border:1px solid var(--border2);border-radius:2px;background:transparent;color:var(--muted);cursor:pointer;transition:all .2s}
+.pbtn:hover{border-color:var(--lime);color:var(--lime)}
+.pbtn.del:hover{border-color:var(--red);color:var(--red)}
+
+/* ── CONTACT ── */
+#contact{text-align:center;padding:clamp(80px,10vw,120px) clamp(1rem,5vw,3rem);position:relative;overflow:hidden}
+.contact-glow{position:absolute;bottom:-100px;left:50%;transform:translateX(-50%);width:600px;height:400px;background:radial-gradient(ellipse,rgba(61,255,160,.05),transparent 65%);pointer-events:none}
+.contact-inner{max-width:580px;margin:0 auto;position:relative;z-index:1}
+.contact-big{font-family:var(--display);font-size:clamp(50px,9vw,90px);letter-spacing:.04em;line-height:.93;margin-bottom:1.25rem}
+.contact-big em{color:var(--lime);font-style:normal}
+.contact-sub{font-size:16px;line-height:1.75;color:var(--muted);margin-bottom:2.5rem}
+.contact-links{display:flex;justify-content:center;gap:.75rem;flex-wrap:wrap}
+.c-link{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;padding:11px 22px;border:1px solid var(--border2);border-radius:3px;color:var(--muted);text-decoration:none;transition:all .2s;display:flex;align-items:center;gap:7px}
+.c-link:hover{border-color:var(--lime);color:var(--lime)}
+
+/* ── FOOTER ── */
+footer{border-top:1px solid var(--border);padding:1.25rem clamp(1rem,5vw,3rem);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.5rem;background:var(--bg)}
+footer p{font-family:var(--mono);font-size:9px;color:var(--muted);letter-spacing:.07em}
+.fdot{color:var(--lime);margin:0 4px;opacity:.3}
+
+/* ── MODAL ── */
+.modal-bg{position:fixed;inset:0;background:rgba(0,0,0,.95);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);z-index:950;display:none;align-items:flex-start;justify-content:center;padding:5vh 1rem;overflow-y:auto}
+.modal-bg.open{display:flex}
+.modal{background:var(--bg2);border:1px solid var(--border2);border-radius:10px;max-width:780px;width:100%;padding:clamp(1.5rem,4vw,3rem);position:relative;animation:mIn .25s ease}
+@keyframes mIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.modal-x{position:absolute;top:1rem;right:1rem;width:36px;height:36px;border-radius:50%;border:1px solid var(--border2);background:transparent;color:var(--muted);font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;line-height:1}
+.modal-x:hover{color:var(--lime);border-color:var(--lime)}
+.modal-tag-row{margin-bottom:.75rem;display:flex;gap:6px;flex-wrap:wrap}
+.modal-title{font-family:var(--display);font-size:clamp(26px,5vw,40px);letter-spacing:.03em;line-height:1.1;margin-bottom:.75rem}
+.modal-byline{font-family:var(--mono);font-size:9px;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-bottom:2rem;padding-bottom:1.25rem;border-bottom:1px solid var(--border)}
+.modal-cover{width:100%;border-radius:8px;overflow:hidden;margin-bottom:1.75rem;touch-action:none;cursor:grab;position:relative}
+.modal-cover:active{cursor:grabbing}
+.modal-cover canvas{width:100%!important;display:block}
+.modal-body{font-size:clamp(15px,2.5vw,17px);line-height:1.9;color:var(--muted)}
+.modal-body p{margin-bottom:1.1rem}
+.modal-body strong{color:var(--text);font-weight:500}
+.modal-body h3{font-family:var(--display);font-size:clamp(20px,3vw,26px);letter-spacing:.05em;color:var(--lime);margin:2rem 0 .75rem}
+/* Inline illustrations in article */
+.art-illo{width:100%;border-radius:8px;overflow:hidden;margin:1.5rem 0;border:1px solid var(--border);touch-action:none;cursor:grab;position:relative}
+.art-illo:active{cursor:grabbing}
+.art-illo canvas{width:100%!important;display:block}
+.art-illo-label{position:absolute;bottom:8px;right:10px;font-family:var(--mono);font-size:8px;color:rgba(255,255,255,.2);pointer-events:none}
+
+/* ── TOAST ── */
+.toast{position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%) translateY(10px);background:var(--lime);color:#000;font-family:var(--mono);font-size:11px;font-weight:600;padding:10px 22px;border-radius:3px;z-index:999;opacity:0;transition:opacity .3s,transform .3s;pointer-events:none;letter-spacing:.05em}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+/* ── REVEAL ── */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
+.reveal.in{opacity:1;transform:translateY(0)}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="logo">RF<span>.dev</span></a>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="#articles">Artigos</a></li>
+      <li><a href="#about">Sobre</a></li>
+      <li><a href="#write">Publicar</a></li>
+    </ul>
+    <a href="#contact" class="nav-cta">Contato</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-content">
+    <div class="hero-badge"><span class="hero-dot"></span>São Paulo, BR — Aberto a colaborações</div>
+    <h1 class="name">Rafael<br><em>Fernandes</em></h1>
+    <p class="hero-role">Engenharia · Cybersecurity · Blockchain · IA</p>
+    <p class="hero-bio">Apaixonado pela <strong>interseção entre segurança digital, blockchain e inteligência artificial</strong>. Explorando a fronteira onde dados, confiança e código constroem o futuro.</p>
+    <div class="hero-tags">
+      <span class="tag tag-r">Cybersecurity</span>
+      <span class="tag tag-g">Blockchain</span>
+      <span class="tag tag-v">IA &amp; ML</span>
+      <span class="tag tag-g">Web3</span>
+      <span class="tag tag-a">SCADA / ICS</span>
+      <span class="tag tag-v">SOC Operations</span>
+      <span class="tag tag-b">Next.js</span>
+      <span class="tag tag-b">ASP.NET Core</span>
+    </div>
+    <div class="hero-btns">
+      <a href="#articles" class="btn btn-fill">Ver Artigos</a>
+      <a href="#about" class="btn btn-ghost">Sobre mim</a>
+    </div>
+    <div class="hero-stats">
+      <div><div class="stat-num">3+</div><div class="stat-label">Anos exp.</div></div>
+      <div><div class="stat-num" id="hero-count">1</div><div class="stat-label">Artigos</div></div>
+      <div><div class="stat-num">∞</div><div class="stat-label">Curiosidade</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- TECH STRIP -->
+<div class="tech-strip">
+  <div class="tech-cards">
+    <div class="t-card reveal" style="--accent:var(--red)">
+      <div class="t-icon g">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3dffa0" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+      </div>
+      <div class="t-title">Cybersecurity</div>
+      <div class="t-desc">SOC operations, análise de ameaças, sistemas SCADA/ICS industriais e defesa ativa em infraestrutura crítica.</div>
+      <div class="t-stat">TryHackMe · Enel Brasil · SCADA</div>
+    </div>
+    <div class="t-card reveal" style="--accent:var(--blue)">
+      <div class="t-icon b">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5ba4ff" stroke-width="1.5"><rect x="2" y="7" width="6" height="6" rx="1"/><rect x="9" y="4" width="6" height="6" rx="1"/><rect x="16" y="7" width="6" height="6" rx="1"/><rect x="9" y="14" width="6" height="6" rx="1"/><path d="M8 10h1M15 7V5M15 14v-2M16 10h-1"/></svg>
+      </div>
+      <div class="t-title">Blockchain</div>
+      <div class="t-desc">Smart contracts, DeFi e Web3. Confiança matemática — não institucional. Construindo a infraestrutura do amanhã.</div>
+      <div class="t-stat">Solidity · DeFi · DAOs · Web3</div>
+    </div>
+    <div class="t-card reveal" style="--accent:var(--violet)">
+      <div class="t-icon v">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#b97fff" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
+      </div>
+      <div class="t-title">Inteligência Artificial</div>
+      <div class="t-desc">LLMs, detecção de anomalias em tempo real e automação de SOC. IA como motor da próxima geração da segurança.</div>
+      <div class="t-stat">LLMs · Anomaly Detection · Automation</div>
+    </div>
+  </div>
+</div>
+
+<!-- ARTICLES -->
+<section class="section" id="articles">
+  <div class="sec-head reveal">
+    <span class="sec-num">01</span>
+    <h2 class="sec-title">Artigos</h2>
+    <div class="sec-rule"></div>
+  </div>
+  <div class="articles-grid" id="articles-grid">
+    <!-- featured card injected by JS -->
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="section" id="about">
+  <div class="sec-head reveal">
+    <span class="sec-num">02</span>
+    <h2 class="sec-title">Sobre</h2>
+    <div class="sec-rule"></div>
+  </div>
+  <div class="about-grid">
+    <div class="reveal">
+      <div class="about-img-box" id="about-canvas-wrap">
+        <canvas id="about-canvas"></canvas>
+        <div class="canvas-hint"><span class="canvas-hint-dot"></span>Arraste para interagir</div>
+      </div>
+    </div>
+    <div class="reveal">
+      <h3 class="about-h">Construindo o <em>futuro digital.</em></h3>
+      <p class="about-p">Sou estudante de <strong>Engenharia de Software</strong> com atuação na interseção entre segurança digital, blockchain e inteligência artificial. Tenho experiência prática com sistemas <strong>SCADA e operações de telecontrole na Enel Brasil</strong> — um ambiente que me ensinou que segurança não é opcional.</p>
+      <p class="about-p">No laboratório, pratico em <strong>TryHackMe</strong> — pentest, análise de ameaças, SOC operations. No código, construo com <strong>Next.js, ASP.NET Core e TailwindCSS</strong>. Nas pesquisas, exploro Web3, contratos inteligentes e como IA pode tornar sistemas críticos mais resilientes.</p>
+      <p class="about-p">Este espaço existe para documentar o que aprendo, compartilhar perspectivas e conectar com profissionais que acreditam que o futuro digital será descentralizado, seguro e inteligente.</p>
+      <div class="skills">
+        <div class="s-card"><div class="s-card-title">Segurança</div><div class="s-pills"><span class="s-pill">SOC</span><span class="s-pill">SCADA</span><span class="s-pill">TryHackMe</span><span class="s-pill">Linux</span><span class="s-pill">Networking</span></div></div>
+        <div class="s-card"><div class="s-card-title">Dev</div><div class="s-pills"><span class="s-pill">Next.js</span><span class="s-pill">ASP.NET</span><span class="s-pill">Tailwind</span><span class="s-pill">REST</span></div></div>
+        <div class="s-card"><div class="s-card-title">Web3 &amp; IA</div><div class="s-pills"><span class="s-pill">Blockchain</span><span class="s-pill">Smart Contracts</span><span class="s-pill">DeFi</span><span class="s-pill">LLMs</span></div></div>
+        <div class="s-card"><div class="s-card-title">Experiência</div><div class="s-pills"><span class="s-pill">Enel Brasil</span><span class="s-pill">Telecontrole</span><span class="s-pill">IoT</span></div></div>
+      </div>
+      <div class="timeline">
+        <div class="tl active"><div class="tl-y">2024 — ATUAL</div><div class="tl-t">Telecontrole · Enel Brasil</div><div class="tl-s">Sistemas SCADA industriais</div></div>
+        <div class="tl"><div class="tl-y">2023</div><div class="tl-t">Engenharia de Software</div><div class="tl-s">Início da graduação</div></div>
+        <div class="tl"><div class="tl-y">2022</div><div class="tl-t">TryHackMe · CTFs</div><div class="tl-s">Início em cybersecurity</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WRITE -->
+<section class="section" id="write">
+  <div class="sec-head reveal">
+    <span class="sec-num">03</span>
+    <h2 class="sec-title">Publicar</h2>
+    <div class="sec-rule"></div>
+  </div>
+  <div class="write-layout">
+    <div class="write-intro reveal">
+      <h3>Novo artigo</h3>
+      <p>Escreva, escolha a categoria e publique. O artigo aparece na grade em tempo real e fica salvo no navegador.</p>
+      <p>Use parágrafos separados por linha em branco. Prefixe com <code style="font-family:var(--mono);font-size:11px;color:var(--lime)">## Título</code> para subtítulos.</p>
+    </div>
+    <div class="form-box reveal">
+      <div class="frow">
+        <div class="fg"><label>Título</label><input id="f-title" type="text" placeholder="Ex: O Futuro do DeFi"></div>
+        <div class="fg"><label>Categoria</label><select id="f-tag"><option value="v">Inteligência Artificial</option><option value="g">Blockchain</option><option value="r">Cybersecurity</option><option value="a">Web3</option></select></div>
+      </div>
+      <div class="fg"><label>Resumo</label><input id="f-excerpt" type="text" placeholder="Uma linha sobre o que o artigo aborda..."></div>
+      <div class="fg"><label>Conteúdo</label><textarea id="f-body" placeholder="Escreva aqui...&#10;&#10;Use ## para subtítulos."></textarea></div>
+      <button class="f-btn" onclick="publish()">PUBLICAR ARTIGO</button>
+    </div>
+  </div>
+  <div class="posted" id="posted-list">
+    <div class="posted-head">Artigos publicados</div>
+    <div id="posted-items"></div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="section" id="contact">
+  <div class="contact-glow"></div>
+  <div class="contact-inner reveal">
+    <h2 class="contact-big">Vamos<br><em>conversar.</em></h2>
+    <p class="contact-sub">Aberto a conexões com profissionais de tecnologia, segurança digital, Web3 e inovação.</p>
+    <div class="contact-links">
+      <a href="https://linkedin.com/in/" target="_blank" class="c-link">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        LinkedIn
+      </a>
+      <a href="https://github.com/" target="_blank" class="c-link">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+        GitHub
+      </a>
+      <a href="mailto:rafael@email.com" class="c-link">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
+        E-mail
+      </a>
+      <a href="https://tryhackme.com/" target="_blank" class="c-link">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+        TryHackMe
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2025 Rafael Daniel De Paulo Fernandes</p>
+  <p>Engenharia<span class="fdot">·</span>Cybersecurity<span class="fdot">·</span>Blockchain<span class="fdot">·</span>IA</p>
+</footer>
+
+<!-- MODAL -->
+<div class="modal-bg" id="modal-bg" onclick="closeBg(event)">
+  <div class="modal">
+    <button class="modal-x" onclick="closeModal()">×</button>
+    <div id="modal-inner"></div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// ══════════════════════════════════════════════
+//  CANVAS ENGINE — Interactive particle scenes
+// ══════════════════════════════════════════════
+class Scene {
+  constructor(canvas, type, opts={}) {
+    this.c = canvas;
+    this.ctx = canvas.getContext('2d');
+    this.type = type;
+    this.opts = opts;
+    this.mouse = {x:0,y:0,down:false};
+    this.touch = {x:0,y:0};
+    this.t = 0;
+    this.particles = [];
+    this.blocks = [];
+    this.nodes = [];
+    this.raf = null;
+    this.resize();
+    this.init();
+    this.bindEvents();
+    this.loop();
+  }
+
+  resize() {
+    const wrap = this.c.parentElement;
+    const dpr = window.devicePixelRatio || 1;
+    const w = wrap.clientWidth;
+    const h = this.opts.height || (this.opts.square ? w : Math.max(180, w * (this.opts.ratio || 0.55)));
+    this.c.width = w * dpr;
+    this.c.height = h * dpr;
+    this.c.style.height = h + 'px';
+    this.ctx.scale(dpr, dpr);
+    this.W = w;
+    this.H = h;
+  }
+
+  init() {
+    this.particles = [];
+    this.nodes = [];
+    this.blocks = [];
+    if (this.type === 'convergence') this.initConvergence();
+    if (this.type === 'blockchain')  this.initBlockchain();
+    if (this.type === 'neural')      this.initNeural();
+    if (this.type === 'shield')      this.initShield();
+    if (this.type === 'portrait')    this.initPortrait();
+    if (this.type === 'usecases')    this.initUsecases();
+  }
+
+  // ── CONVERGENCE: IA ↔ Blockchain fusion ──
+  initConvergence() {
+    this.orbs = [
+      {x: this.W*0.27, y: this.H*0.5, r: Math.min(this.W,this.H)*0.22, col:'#b97fff', label:'IA'},
+      {x: this.W*0.73, y: this.H*0.5, r: Math.min(this.W,this.H)*0.22, col:'#3dffa0', label:'BLOCKCHAIN'},
+    ];
+    this.links = [];
+    for(let i=0;i<28;i++){
+      const side = i<14 ? 0 : 1;
+      const o = this.orbs[side];
+      const a = Math.random()*Math.PI*2;
+      const rs = o.r*(0.35+Math.random()*0.55);
+      this.links.push({
+        ox: o.x + Math.cos(a)*rs,
+        oy: o.y + Math.sin(a)*rs,
+        tx: this.W*0.5,
+        ty: this.H*0.5,
+        col: o.col,
+        phase: Math.random()*Math.PI*2,
+        spd: 0.004+Math.random()*0.004,
+        t: Math.random()
+      });
+    }
+    // orbit particles
+    this.orbit = [];
+    for(let i=0;i<60;i++){
+      const o = this.orbs[Math.random()<0.5?0:1];
+      const a = Math.random()*Math.PI*2;
+      const r = o.r*(0.2+Math.random()*0.7);
+      this.orbit.push({ox:o.x,oy:o.y,a,r,spd:(Math.random()-0.5)*0.012,col:o.col,sz:1+Math.random()*1.5,op:0.3+Math.random()*0.5});
+    }
+  }
+  drawConvergence(mx, my) {
+    const ctx = this.ctx;
+    const W=this.W,H=this.H;
+    ctx.clearRect(0,0,W,H);
+    // background
+    ctx.fillStyle='#04060e';
+    ctx.fillRect(0,0,W,H);
+
+    const dx = mx - W/2, dy = my - H/2;
+
+    // draw orbs
+    this.orbs.forEach((o,i) => {
+      const ox = o.x + dx*0.04*(i===0?1:-1);
+      const oy = o.y + dy*0.04;
+      // outer glow
+      const gr = ctx.createRadialGradient(ox,oy,0,ox,oy,o.r*1.2);
+      gr.addColorStop(0, o.col+'28');
+      gr.addColorStop(0.5, o.col+'0c');
+      gr.addColorStop(1, 'transparent');
+      ctx.beginPath(); ctx.arc(ox,oy,o.r*1.2,0,Math.PI*2);
+      ctx.fillStyle=gr; ctx.fill();
+      // circle ring
+      ctx.beginPath(); ctx.arc(ox,oy,o.r,0,Math.PI*2);
+      ctx.strokeStyle=o.col+'55'; ctx.lineWidth=1; ctx.stroke();
+      ctx.beginPath(); ctx.arc(ox,oy,o.r*0.6,0,Math.PI*2);
+      ctx.strokeStyle=o.col+'33'; ctx.lineWidth=.6; ctx.stroke();
+      // label
+      ctx.font = `bold ${Math.max(10,W*0.022)}px 'JetBrains Mono',monospace`;
+      ctx.fillStyle = o.col+'cc'; ctx.textAlign='center';
+      ctx.fillText(o.label, ox, oy + o.r + 18);
+    });
+
+    // flowing links
+    this.links.forEach(l => {
+      l.t = (l.t + l.spd) % 1;
+      const cx = W/2 + dx*0.02;
+      const cy = H/2 + dy*0.02;
+      const px = l.ox + (cx - l.ox) * l.t;
+      const py = l.oy + (cy - l.oy) * l.t;
+      ctx.beginPath(); ctx.arc(px,py,2,0,Math.PI*2);
+      ctx.fillStyle = l.col + 'bb'; ctx.fill();
+      // trail
+      ctx.beginPath();
+      ctx.moveTo(l.ox, l.oy);
+      ctx.quadraticCurveTo(cx,cy, l.ox+(cx-l.ox)*l.t, l.oy+(cy-l.oy)*l.t);
+      ctx.strokeStyle = l.col+'22'; ctx.lineWidth=.7; ctx.stroke();
+    });
+
+    // center fusion node
+    const cx = W/2 + dx*0.02, cy = H/2 + dy*0.02;
+    const r = Math.min(W,H)*0.055;
+    const gc = ctx.createRadialGradient(cx,cy,0,cx,cy,r*2.5);
+    gc.addColorStop(0,'#3dffa0aa'); gc.addColorStop(0.4,'#3dffa033'); gc.addColorStop(1,'transparent');
+    ctx.beginPath(); ctx.arc(cx,cy,r*2.5,0,Math.PI*2); ctx.fillStyle=gc; ctx.fill();
+    ctx.beginPath(); ctx.arc(cx,cy,r,0,Math.PI*2); ctx.fillStyle='#3dffa0ee'; ctx.fill();
+    ctx.beginPath(); ctx.arc(cx,cy,r*0.5,0,Math.PI*2); ctx.fillStyle='#fff'; ctx.fill();
+    // dashed rings
+    ctx.setLineDash([4,8]);
+    ctx.beginPath(); ctx.arc(cx,cy,r*1.8+Math.sin(this.t*0.5)*4,0,Math.PI*2);
+    ctx.strokeStyle='#3dffa033'; ctx.lineWidth=.7; ctx.stroke();
+    ctx.beginPath(); ctx.arc(cx,cy,r*2.8+Math.sin(this.t*0.4)*5,0,Math.PI*2);
+    ctx.strokeStyle='#3dffa018'; ctx.lineWidth=.5; ctx.stroke();
+    ctx.setLineDash([]);
+
+    // orbit particles
+    this.orbit.forEach(p => {
+      p.a += p.spd;
+      const px = p.ox + Math.cos(p.a)*p.r + dx*0.03;
+      const py = p.oy + Math.sin(p.a)*p.r + dy*0.03;
+      ctx.beginPath(); ctx.arc(px,py,p.sz,0,Math.PI*2);
+      ctx.fillStyle = p.col + Math.round(p.op*255).toString(16).padStart(2,'0');
+      ctx.fill();
+    });
+
+    // center text
+    ctx.font = `bold ${Math.max(8,W*0.018)}px 'JetBrains Mono',monospace`;
+    ctx.fillStyle = '#3dffa0'; ctx.textAlign='center';
+    ctx.fillText('CONVERGÊNCIA', cx, cy - r - 14);
+  }
+
+  // ── BLOCKCHAIN: animated chain ──
+  initBlockchain() {
+    const cols = Math.max(2, Math.floor(this.W / 120));
+    this.bks = [];
+    for(let i=0;i<cols;i++) {
+      const x = 30 + i*(this.W-60)/(cols-1||1);
+      this.bks.push({x, y:this.H/2, w:90, h:56, idx:4820+i, hash:this.rndHash(), phase:i*0.6, active:i===Math.floor(cols/2)});
+    }
+    this.packets = [];
+    for(let i=0;i<cols-1;i++) {
+      this.packets.push({i, t:Math.random(), spd:0.004+Math.random()*0.003, col:'#3dffa0'});
+    }
+    this.sparkles = [];
+  }
+  rndHash(){return '0x'+[...Array(6)].map(()=>'0123456789abcdef'[Math.floor(Math.random()*16)]).join('')+'...'}
+  drawBlockchain(mx, my) {
+    const ctx=this.ctx, W=this.W, H=this.H;
+    ctx.clearRect(0,0,W,H);
+    ctx.fillStyle='#04060e'; ctx.fillRect(0,0,W,H);
+
+    const dx=(mx-W/2)*0.05, dy=(my-H/2)*0.05;
+
+    // draw chain connectors
+    this.bks.forEach((b,i) => {
+      if(i<this.bks.length-1){
+        const b2=this.bks[i+1];
+        ctx.beginPath();
+        ctx.moveTo(b.x+b.w/2+dx*(i%2?1:-1),b.y+dy);
+        ctx.lineTo(b2.x-b2.w/2+dx*(i%2?-1:1),b2.y+dy);
+        ctx.strokeStyle='#3dffa033'; ctx.lineWidth=1.2; ctx.stroke();
+        // small dots on chain
+        for(let j=1;j<4;j++){
+          const t=j/4;
+          const px=b.x+b.w/2+dx*(i%2?1:-1) + (b2.x-b2.w/2+dx*(i%2?-1:1)-b.x-b.w/2-dx*(i%2?1:-1))*t;
+          const py=b.y+dy + (b2.y-b.y)*t;
+          ctx.beginPath(); ctx.arc(px,py,1.5,0,Math.PI*2);
+          ctx.fillStyle='#3dffa044'; ctx.fill();
+        }
+      }
+    });
+
+    // draw blocks
+    this.bks.forEach((b,i) => {
+      const bx=b.x-b.w/2+dx*(i%2?0.8:-0.8), by=b.y-b.h/2+dy;
+      const active=b.active||i===Math.round(this.mouse.x/(W/this.bks.length)||0);
+      ctx.beginPath();
+      ctx.roundRect(bx,by,b.w,b.h,6);
+      ctx.fillStyle = active ? 'rgba(61,255,160,0.1)' : 'rgba(61,255,160,0.04)';
+      ctx.fill();
+      ctx.strokeStyle = active ? '#3dffa088' : '#3dffa033';
+      ctx.lineWidth = active ? 1.2 : .8;
+      ctx.stroke();
+      // glow if active
+      if(active){
+        ctx.beginPath(); ctx.roundRect(bx,by,b.w,b.h,6);
+        const gg=ctx.createRadialGradient(bx+b.w/2,by+b.h/2,0,bx+b.w/2,by+b.h/2,b.w);
+        gg.addColorStop(0,'#3dffa011'); gg.addColorStop(1,'transparent');
+        ctx.fillStyle=gg; ctx.fill();
+      }
+      // text
+      ctx.textAlign='center';
+      ctx.font = `bold ${Math.max(8,W*0.017)}px 'JetBrains Mono',monospace`;
+      ctx.fillStyle='#3dffa0cc'; ctx.fillText('#'+b.idx, bx+b.w/2, by+18);
+      ctx.font = `${Math.max(7,W*0.013)}px 'JetBrains Mono',monospace`;
+      ctx.fillStyle='#3a5060'; ctx.fillText(b.hash, bx+b.w/2, by+32);
+      if(b.active){
+        ctx.fillStyle='#3dffa077';
+        ctx.fillText('✓ IA decision', bx+b.w/2, by+46);
+      } else {
+        ctx.fillStyle='#3a5060'; ctx.fillText('prev hash →', bx+b.w/2, by+46);
+      }
+    });
+
+    // moving packets
+    this.packets.forEach(p => {
+      p.t=(p.t+p.spd)%1;
+      const b=this.bks[p.i], b2=this.bks[p.i+1];
+      const px=b.x+b.w/2+dx*0.5 + (b2.x-b2.w/2-b.x-b.w/2)*p.t;
+      const py=b.y+dy;
+      ctx.beginPath(); ctx.arc(px,py,3.5,0,Math.PI*2);
+      ctx.fillStyle='#3dffa0'; ctx.fill();
+      ctx.beginPath(); ctx.arc(px,py,7,0,Math.PI*2);
+      ctx.fillStyle='#3dffa033'; ctx.fill();
+    });
+
+    // label
+    ctx.font = `${Math.max(8,W*0.015)}px 'JetBrains Mono',monospace`;
+    ctx.fillStyle='#3dffa044'; ctx.textAlign='center';
+    ctx.fillText('CLIQUE EM UM BLOCO', W/2, H-14);
+  }
+
+  // ── NEURAL NET ──
+  initNeural() {
+    const layers = [3,4,4,2];
+    this.nn = layers.map((n,li) => {
+      const xs = [], ys = [];
+      const x = this.W*(0.15 + li*(0.7/(layers.length-1)));
+      for(let i=0;i<n;i++){
+        const y = this.H*(0.2+0.6*i/(n-1||1));
+        xs.push(x); ys.push(y);
+      }
+      return {n,x:this.W*(0.15+li*(0.7/(layers.length-1))),ys,col:li===0?'#5ba4ff':li===layers.length-1?'#3dffa0':'#b97fff'};
+    });
+    this.pulses = [];
+    for(let l=0;l<this.nn.length-1;l++){
+      for(let a=0;a<this.nn[l].n;a++){
+        for(let b=0;b<this.nn[l+1].n;b++){
+          if(Math.random()<0.7) this.pulses.push({l,a,b,t:Math.random(),spd:0.003+Math.random()*0.004,w:0.3+Math.random()*1.2,active:Math.random()<0.3});
+        }
+      }
+    }
+    this.signals = [];
+  }
+  drawNeural(mx, my) {
+    const ctx=this.ctx, W=this.W, H=this.H;
+    ctx.clearRect(0,0,W,H);
+    ctx.fillStyle='#04060e'; ctx.fillRect(0,0,W,H);
+    const dx=(mx-W/2)*0.04, dy=(my-H/2)*0.04;
+    // draw connections
+    this.pulses.forEach(p => {
+      const la=this.nn[p.l], lb=this.nn[p.l+1];
+      const ax=la.x+dx*(p.l*0.02), ay=la.ys[p.a]+dy*0.5;
+      const bx=lb.x+dx*((p.l+1)*0.02), by=lb.ys[p.b]+dy*0.5;
+      ctx.beginPath(); ctx.moveTo(ax,ay); ctx.lineTo(bx,by);
+      const col=p.active?'#b97fff':'#b97fff';
+      ctx.strokeStyle=p.active?'#b97fff33':'#b97fff11';
+      ctx.lineWidth=p.w*0.5; ctx.stroke();
+      // moving pulse
+      p.t=(p.t+p.spd)%1;
+      const px=ax+(bx-ax)*p.t, py=ay+(by-ay)*p.t;
+      ctx.beginPath(); ctx.arc(px,py,p.active?3:1.5,0,Math.PI*2);
+      ctx.fillStyle=p.active?'#b97fffcc':'#b97fff44'; ctx.fill();
+    });
+    // draw nodes
+    this.nn.forEach((layer,li) => {
+      layer.ys.forEach((y,ni) => {
+        const x=layer.x+dx*(li*0.03);
+        const r = li===0||li===this.nn.length-1 ? 10 : 8;
+        ctx.beginPath(); ctx.arc(x,y+dy*0.4,r,0,Math.PI*2);
+        ctx.fillStyle=layer.col+'22'; ctx.fill();
+        ctx.beginPath(); ctx.arc(x,y+dy*0.4,r,0,Math.PI*2);
+        ctx.strokeStyle=layer.col+'88'; ctx.lineWidth=1; ctx.stroke();
+        ctx.beginPath(); ctx.arc(x,y+dy*0.4,r*0.4,0,Math.PI*2);
+        ctx.fillStyle=layer.col+'bb'; ctx.fill();
+      });
+    });
+    // labels
+    ctx.font=`${Math.max(8,W*0.015)}px 'JetBrains Mono',monospace`;
+    ctx.textAlign='center';
+    const labels=['INPUT','HIDDEN','HIDDEN','OUTPUT'];
+    this.nn.forEach((l,li) => {
+      ctx.fillStyle=l.col+'66';
+      ctx.fillText(labels[li]||'', l.x+dx*(li*0.03), H-14);
+    });
+    // output labels
+    const outL=this.nn[this.nn.length-1];
+    ctx.textAlign='left';
+    ctx.font=`bold ${Math.max(8,W*0.015)}px 'JetBrains Mono',monospace`;
+    ctx.fillStyle='#ff608099'; ctx.fillText('AMEAÇA', outL.x+14+dx*0.1, outL.ys[0]+5+dy*0.4);
+    ctx.fillStyle='#3dffa099'; ctx.fillText('SEGURO', outL.x+14+dx*0.1, outL.ys[1]+5+dy*0.4);
+  }
+
+  // ── SHIELD: cybersecurity visualization ──
+  initShield() {
+    this.threats = [];
+    for(let i=0;i<20;i++) {
+      const angle = Math.random()*Math.PI*2;
+      const dist = 0.38+Math.random()*0.2;
+      this.threats.push({
+        angle,dist,
+        blocked:Math.random()<0.7,
+        spd:(Math.random()-0.5)*0.006,
+        col:Math.random()<0.5?'#ff6080':'#ffbd40',
+        sz:2+Math.random()*2, phase:Math.random()*Math.PI*2
+      });
+    }
+    this.rings = [0.22,0.32,0.42].map(r => ({r, spd:0.003+Math.random()*0.002, angle:Math.random()*Math.PI*2}));
+  }
+  drawShield(mx, my) {
+    const ctx=this.ctx, W=this.W, H=this.H;
+    ctx.clearRect(0,0,W,H);
+    ctx.fillStyle='#04060e'; ctx.fillRect(0,0,W,H);
+    const cx=W/2+(mx-W/2)*0.05, cy=H/2+(my-H/2)*0.05;
+    const base=Math.min(W,H)*0.42;
+    // rotating rings
+    this.rings.forEach(ring => {
+      ring.angle+=ring.spd;
+      ctx.setLineDash([6,12]);
+      ctx.beginPath(); ctx.arc(cx,cy,base*ring.r/0.42,ring.angle,ring.angle+Math.PI*1.5);
+      ctx.strokeStyle='#3dffa018'; ctx.lineWidth=.8; ctx.stroke();
+      ctx.setLineDash([]);
+    });
+    // shield path
+    const sh=base*0.55, sw=base*0.38;
+    ctx.beginPath();
+    ctx.moveTo(cx, cy-sh*0.85);
+    ctx.bezierCurveTo(cx+sw*0.9,cy-sh*0.7, cx+sw*1.1,cy-sh*0.1, cx,cy+sh*0.85);
+    ctx.bezierCurveTo(cx-sw*1.1,cy-sh*0.1, cx-sw*0.9,cy-sh*0.7, cx,cy-sh*0.85);
+    const shGrad=ctx.createRadialGradient(cx,cy,0,cx,cy,sh);
+    shGrad.addColorStop(0,'#3dffa011'); shGrad.addColorStop(1,'#3dffa005');
+    ctx.fillStyle=shGrad; ctx.fill();
+    ctx.strokeStyle='#3dffa066'; ctx.lineWidth=1.5; ctx.stroke();
+    // checkmark
+    ctx.beginPath(); ctx.moveTo(cx-sh*0.15,cy); ctx.lineTo(cx-sh*0.02,cy+sh*0.16); ctx.lineTo(cx+sh*0.2,cy-sh*0.16);
+    ctx.strokeStyle='#3dffa0cc'; ctx.lineWidth=2.5; ctx.lineCap='round'; ctx.lineJoin='round'; ctx.stroke();
+    // threats
+    this.t += 0.016;
+    this.threats.forEach(th => {
+      th.angle += th.spd;
+      const dist = (th.blocked ? base*0.48 : base*(th.dist+Math.sin(this.t)*0.03));
+      const tx=cx+Math.cos(th.angle)*dist, ty=cy+Math.sin(th.angle)*dist;
+      ctx.beginPath(); ctx.arc(tx,ty,th.sz,0,Math.PI*2);
+      ctx.fillStyle=th.col+(th.blocked?'66':'cc'); ctx.fill();
+      if(th.blocked){
+        const lx=cx+Math.cos(th.angle)*base*0.44, ly=cy+Math.sin(th.angle)*base*0.44;
+        ctx.beginPath(); ctx.moveTo(tx-4,ty-4); ctx.lineTo(tx+4,ty+4);
+        ctx.moveTo(tx+4,ty-4); ctx.lineTo(tx-4,ty+4);
+        ctx.strokeStyle=th.col+'99'; ctx.lineWidth=1; ctx.stroke();
+      }
+    });
+    // center label
+    ctx.font=`bold ${Math.max(9,W*0.019)}px 'JetBrains Mono',monospace`;
+    ctx.fillStyle='#3dffa0bb'; ctx.textAlign='center';
+    ctx.fillText('SISTEMA PROTEGIDO', cx, cy+sh*0.85+24);
+  }
+
+  // ── PORTRAIT: abstract profile ──
+  initPortrait() {
+    this.pts = [];
+    for(let i=0;i<80;i++){
+      this.pts.push({
+        x:this.W/2+(Math.random()-0.5)*this.W*0.7,
+        y:this.H/2+(Math.random()-0.5)*this.H*0.7,
+        vx:(Math.random()-0.5)*0.3, vy:(Math.random()-0.5)*0.3,
+        r:1+Math.random()*2,
+        col:['#3dffa0','#5ba4ff','#b97fff'][Math.floor(Math.random()*3)]
+      });
+    }
+  }
+  drawPortrait(mx, my) {
+    const ctx=this.ctx, W=this.W, H=this.H;
+    ctx.clearRect(0,0,W,H);
+    ctx.fillStyle='#04060e'; ctx.fillRect(0,0,W,H);
+    const cx=W/2, cy=H*0.38;
+    // person silhouette
+    // head
+    const hr=Math.min(W,H)*0.15;
+    const hg=ctx.createRadialGradient(cx,cy-hr*0.2,0,cx,cy-hr*0.2,hr*1.5);
+    hg.addColorStop(0,'#3dffa008'); hg.addColorStop(1,'transparent');
+    ctx.beginPath(); ctx.arc(cx,cy,hr*1.6,0,Math.PI*2); ctx.fillStyle=hg; ctx.fill();
+    ctx.beginPath(); ctx.arc(cx,cy,hr,0,Math.PI*2);
+    ctx.strokeStyle='#3dffa044'; ctx.lineWidth=1; ctx.stroke();
+    // body
+    ctx.beginPath();
+    ctx.moveTo(cx-hr*0.6,cy+hr*1.05);
+    ctx.bezierCurveTo(cx-hr*1.4,cy+hr*2.5, cx-hr*1.6,cy+hr*3.5, cx-hr*1.8,cy+H*0.55);
+    ctx.lineTo(cx+hr*1.8,cy+H*0.55);
+    ctx.bezierCurveTo(cx+hr*1.6,cy+hr*3.5, cx+hr*1.4,cy+hr*2.5, cx+hr*0.6,cy+hr*1.05);
+    ctx.closePath();
+    ctx.strokeStyle='#3dffa033'; ctx.lineWidth=.8; ctx.stroke();
+    const bg2=ctx.createLinearGradient(cx,cy+hr,cx,cy+H*0.55);
+    bg2.addColorStop(0,'#3dffa00a'); bg2.addColorStop(1,'transparent');
+    ctx.fillStyle=bg2; ctx.fill();
+    // particles
+    this.pts.forEach(p => {
+      const fx=(mx-W/2)*0.04, fy=(my-H/2)*0.04;
+      p.x+=p.vx+fx*0.01; p.y+=p.vy+fy*0.01;
+      if(p.x<0||p.x>W) p.vx*=-1;
+      if(p.y<0||p.y>H) p.vy*=-1;
+      ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+      ctx.fillStyle=p.col+'55'; ctx.fill();
+    });
+    // connect nearby particles
+    for(let i=0;i<this.pts.length;i++){
+      for(let j=i+1;j<this.pts.length;j++){
+        const d=Math.hypot(this.pts[i].x-this.pts[j].x,this.pts[i].y-this.pts[j].y);
+        if(d<80){
+          ctx.beginPath(); ctx.moveTo(this.pts[i].x,this.pts[i].y); ctx.lineTo(this.pts[j].x,this.pts[j].y);
+          ctx.strokeStyle=this.pts[i].col+Math.round((1-d/80)*35).toString(16).padStart(2,'0');
+          ctx.lineWidth=.4; ctx.stroke();
+        }
+      }
+    }
+    // labels
+    ctx.font=`bold ${Math.max(10,W*0.04)}px 'Bebas Neue',sans-serif`;
+    ctx.fillStyle='#3dffa0cc'; ctx.textAlign='center';
+    ctx.fillText('RAFAEL FERNANDES', cx, H-50);
+    ctx.font=`${Math.max(8,W*0.02)}px 'JetBrains Mono',monospace`;
+    ctx.fillStyle='#3dffa066';
+    ctx.fillText('SÃO PAULO · CYBERSECURITY · BLOCKCHAIN', cx, H-28);
+  }
+
+  // ── USE CASES: 4-card animated grid ──
+  initUsecases() {
+    this.ucards = [
+      {label:'01 DADOS VERIFICÁVEIS', sub:'Dataset on-chain', col:'#5ba4ff', x:0.15, y:0.28},
+      {label:'02 IA DESCENTRALIZADA', sub:'Bittensor / tokens', col:'#b97fff', x:0.62, y:0.28},
+      {label:'03 IDENTIDADE + IA', sub:'ZK proofs + SSI', col:'#ffbd40', x:0.15, y:0.72},
+      {label:'04 ORÁCULOS IA', sub:'Contratos inteligentes', col:'#3dffa0', x:0.62, y:0.72},
+    ];
+    this.floaters = [];
+    for(let i=0;i<30;i++) this.floaters.push({x:Math.random()*this.W,y:Math.random()*this.H,r:.8+Math.random()*1.5,vx:(Math.random()-.5)*.3,vy:(Math.random()-.5)*.3,col:['#3dffa0','#5ba4ff','#b97fff','#ffbd40'][Math.floor(Math.random()*4)]});
+  }
+  drawUsecases(mx, my) {
+    const ctx=this.ctx, W=this.W, H=this.H;
+    ctx.clearRect(0,0,W,H); ctx.fillStyle='#04060e'; ctx.fillRect(0,0,W,H);
+    const dx=(mx-W/2)*0.04, dy=(my-H/2)*0.04;
+    // floaters
+    this.floaters.forEach(f => {
+      f.x+=f.vx; f.y+=f.vy;
+      if(f.x<0||f.x>W)f.vx*=-1; if(f.y<0||f.y>H)f.vy*=-1;
+      ctx.beginPath(); ctx.arc(f.x,f.y,f.r,0,Math.PI*2); ctx.fillStyle=f.col+'33'; ctx.fill();
+    });
+    // center convergence dot
+    const cx=W/2+dx*0.3, cy=H/2+dy*0.3;
+    const cr=Math.min(W,H)*0.04;
+    const cg=ctx.createRadialGradient(cx,cy,0,cx,cy,cr*3);
+    cg.addColorStop(0,'#3dffa066'); cg.addColorStop(1,'transparent');
+    ctx.beginPath(); ctx.arc(cx,cy,cr*3,0,Math.PI*2); ctx.fillStyle=cg; ctx.fill();
+    ctx.beginPath(); ctx.arc(cx,cy,cr,0,Math.PI*2); ctx.fillStyle='#3dffa0cc'; ctx.fill();
+    // cards
+    this.ucards.forEach((uc,i) => {
+      const ux=uc.x*W+dx*(i%2?1:-1)*0.5, uy=uc.y*H+dy*(i<2?-.5:.5);
+      const cw=Math.min(W*0.32,140), ch=Math.min(H*0.22,60);
+      ctx.beginPath(); ctx.roundRect(ux-cw/2,uy-ch/2,cw,ch,6);
+      ctx.fillStyle=uc.col+'0d'; ctx.fill();
+      ctx.strokeStyle=uc.col+'55'; ctx.lineWidth=1; ctx.stroke();
+      ctx.textAlign='center';
+      ctx.font=`bold ${Math.max(7,W*0.018)}px 'JetBrains Mono',monospace`;
+      ctx.fillStyle=uc.col+'cc'; ctx.fillText(uc.label, ux, uy-4);
+      ctx.font=`${Math.max(6,W*0.015)}px 'JetBrains Mono',monospace`;
+      ctx.fillStyle=uc.col+'66'; ctx.fillText(uc.sub, ux, uy+13);
+      // line to center
+      ctx.beginPath(); ctx.moveTo(ux,uy); ctx.lineTo(cx,cy);
+      ctx.strokeStyle=uc.col+'22'; ctx.lineWidth=.6; ctx.stroke();
+      // dot on line
+      const t=0.55+0.12*Math.sin(this.t*0.7+i);
+      const lx=ux+(cx-ux)*t, ly=uy+(cy-uy)*t;
+      ctx.beginPath(); ctx.arc(lx,ly,2.5,0,Math.PI*2); ctx.fillStyle=uc.col+'aa'; ctx.fill();
+    });
+  }
+
+  bindEvents() {
+    const c = this.c;
+    // Mouse
+    c.addEventListener('mousemove', e => {
+      const r=c.getBoundingClientRect();
+      this.mouse.x=(e.clientX-r.left)*(this.W/r.width);
+      this.mouse.y=(e.clientY-r.top)*(this.H/r.height);
+    });
+    c.addEventListener('mouseenter', () => { this.mouse.active=true; });
+    c.addEventListener('mouseleave', () => { this.mouse.active=false; this.mouse.x=this.W/2; this.mouse.y=this.H/2; });
+    // Touch — drag support
+    c.addEventListener('touchstart', e => { e.preventDefault(); const t=e.touches[0]; const r=c.getBoundingClientRect(); this.mouse.x=(t.clientX-r.left)*(this.W/r.width); this.mouse.y=(t.clientY-r.top)*(this.H/r.height); }, {passive:false});
+    c.addEventListener('touchmove', e => { e.preventDefault(); const t=e.touches[0]; const r=c.getBoundingClientRect(); this.mouse.x=(t.clientX-r.left)*(this.W/r.width); this.mouse.y=(t.clientY-r.top)*(this.H/r.height); }, {passive:false});
+    // Click on blockchain
+    if(this.type==='blockchain'){
+      c.addEventListener('click', e => {
+        const r=c.getBoundingClientRect();
+        const cx=(e.clientX-r.left)*(this.W/r.width);
+        const cy=(e.clientY-r.top)*(this.H/r.height);
+        this.bks.forEach((b,i) => {
+          if(cx>b.x-b.w/2&&cx<b.x+b.w/2&&cy>b.y-b.h/2&&cy<b.y+b.h/2){
+            this.bks.forEach(bb=>bb.active=false); b.active=!b.active;
+          }
+        });
+      });
+    }
+    // Resize
+    window.addEventListener('resize', () => { this.resize(); this.init(); });
+  }
+
+  loop() {
+    this.t += 0.016;
+    const mx=this.mouse.x||this.W/2, my=this.mouse.y||this.H/2;
+    if(this.type==='convergence') this.drawConvergence(mx,my);
+    if(this.type==='blockchain')  this.drawBlockchain(mx,my);
+    if(this.type==='neural')      this.drawNeural(mx,my);
+    if(this.type==='shield')      this.drawShield(mx,my);
+    if(this.type==='portrait')    this.drawPortrait(mx,my);
+    if(this.type==='usecases')    this.drawUsecases(mx,my);
+    this.raf = requestAnimationFrame(() => this.loop());
+  }
+
+  destroy() { if(this.raf) cancelAnimationFrame(this.raf); }
+}
+
+// ══════════════════════════════════════════════
+//  DATA
+// ══════════════════════════════════════════════
+const TAGS={
+  v:{label:'Inteligência Artificial',cls:'art-tag-v'},
+  g:{label:'Blockchain',cls:'art-tag-g'},
+  r:{label:'Cybersecurity',cls:'art-tag-r'},
+  a:{label:'Web3',cls:'art-tag-a'},
+};
+
+const FEATURED = {
+  id:'f',
+  title:'A Próxima Internet Não Será Controlada Por Ninguém — E Isso Muda Tudo',
+  tags:['v','g'],
+  date:'10 Mai 2025',
+  excerpt:'Como IA e Blockchain juntas estão construindo a fundação da próxima geração da internet: descentralizada, inteligente e incorruptível.',
+  coverScene:'convergence',
+  body:`Estamos vivendo uma inflexão histórica. Não é hype — é estrutural.
+
+Duas tecnologias estão convergindo de uma forma que vai redefinir como o mundo armazena dados, toma decisões e estabelece confiança. E a maioria das pessoas ainda não percebeu o que está prestes a acontecer.
+
+## O Problema que Cada Uma Resolve
+
+Cada tecnologia sozinha tem limitações críticas. A IA precisa de dados confiáveis — mas como verificar que não foram manipulados? A Blockchain garante imutabilidade — mas por si só é burra: não consegue interpretar o que registra.
+
+A fusão resolve os dois ao mesmo tempo. Imagine um sistema de saúde: a IA analisa exames e sugere diagnósticos, enquanto os dados do paciente ficam registrados on-chain — imutáveis, auditáveis, controlados pelo próprio paciente. Nenhuma empresa pode vender ou alterar esse histórico.
+
+## O Poder da Inteligência Artificial
+
+[SCENE:neural]
+
+Trabalhando com sistemas industriais SCADA na Enel Brasil, percebi algo que poucos discutem: o maior gargalo de segurança não é técnico — é cognitivo. Humanos não conseguem processar a velocidade e o volume de ameaças que sistemas críticos enfrentam hoje.
+
+A IA resolve isso. Ela não só detecta anomalias em tempo real — ela aprende, adapta e antecipa. Em SOC operations, isso significa a diferença entre conter um ataque em segundos ou descobrir o breach semanas depois.
+
+**Detecção preditiva:** modelos treinados em logs históricos identificam padrões de ataque antes do incidente. **Resposta autônoma:** agentes de IA isolam vetores sem esperar aprovação humana. **Redução de ruído:** 95% dos alertas de SIEM são falsos positivos — a IA filtra e escala apenas o que importa.
+
+## O Potencial da Blockchain
+
+[SCENE:blockchain]
+
+Blockchain inverte a lógica de confiança. Um registro imutável, distribuído e verificável publicamente não precisa de autoridade central — a confiança é matemática, não institucional.
+
+**Smart contracts** executam acordos sem intermediários. **DeFi** oferece serviços financeiros para 1,7 bilhão de pessoas sem acesso bancário. **DAOs** criam organizações onde o código substitui a hierarquia.
+
+A camada crítica que blockchain adiciona à IA: **auditabilidade**. Toda decisão tomada por um modelo pode ser registrada on-chain — timestamp, inputs, output, versão do modelo. Se uma IA médica erra um diagnóstico, a cadeia de decisão é auditável para sempre.
+
+## Como Elas se Unem na Prática
+
+[SCENE:usecases]
+
+**1. Dados de treino verificáveis:** datasets on-chain garantem que o modelo foi treinado com dados legítimos, não envenenados.
+
+**2. Inferência descentralizada:** redes como Bittensor permitem que qualquer pessoa contribua com poder computacional para rodar modelos de IA e receba tokens como recompensa. IA sem dono central.
+
+**3. Identidade soberana + IA:** sistemas SSI combinados com IA permitem provar quem você é sem revelar seus dados. Zero-knowledge proofs + machine learning = privacidade computacional.
+
+**4. Oráculos inteligentes:** smart contracts precisam de dados do mundo real. IA como oráculo — interpretando eventos externos e alimentando contratos com dados verificados.
+
+## A Convergência Inevitável
+
+[SCENE:convergence]
+
+A Web3 não é só uma nova camada tecnológica. É uma redistribuição de poder — de corporações e governos para indivíduos e comunidades. E IA é o motor que vai tornar isso escalável e inteligente.
+
+O próximo ciclo tecnológico não pertence às big techs que controlam modelos centralizados. Pertence a quem souber construir na interseção — onde algoritmos inteligentes encontram registros imutáveis, e onde código substitui a confiança cega em instituições.
+
+Não estamos mais construindo software. Estamos construindo infraestrutura civilizacional.`
+};
+
+// ══════════════════════════════════════════════
+//  ARTICLE CARD
+// ══════════════════════════════════════════════
+function makeCardCanvas(type, height=180) {
+  const wrap = document.createElement('div');
+  wrap.className='art-img';
+  wrap.style.height=height+'px';
+  const c = document.createElement('canvas');
+  wrap.appendChild(c);
+  const ov = document.createElement('div');
+  ov.className='art-img-overlay';
+  wrap.appendChild(ov);
+  const hint = document.createElement('div');
+  hint.className='canvas-hint';
+  hint.innerHTML='<span class="canvas-hint-dot"></span>Arraste';
+  wrap.appendChild(hint);
+  // lazy init
+  const obs = new IntersectionObserver(entries => {
+    if(entries[0].isIntersecting){
+      new Scene(c, type, {ratio:0.5});
+      obs.disconnect();
+    }
+  }, {threshold:.1});
+  obs.observe(wrap);
+  return wrap;
+}
+
+// ══════════════════════════════════════════════
+//  STORAGE & RENDER
+// ══════════════════════════════════════════════
+let arts=[];
+try{arts=JSON.parse(localStorage.getItem('rf3-arts')||'[]')}catch(e){}
+function save(){localStorage.setItem('rf3-arts',JSON.stringify(arts))}
+function fmtDate(iso){return new Date(iso).toLocaleDateString('pt-BR',{day:'2-digit',month:'short',year:'numeric'})}
+function esc(s){return(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+
+const sceneMap = {v:'neural', g:'blockchain', r:'shield', a:'usecases'};
+
+function render() {
+  const grid = document.getElementById('articles-grid');
+  grid.innerHTML = '';
+  document.getElementById('hero-count').textContent = arts.length + 1;
+
+  // Featured
+  const fa = document.createElement('a');
+  fa.className='art-card featured reveal';
+  fa.href='#'; fa.onclick=e=>{e.preventDefault();openModal('f')};
+  // featured is a grid internally on big screens
+  fa.style.cssText='display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:center';
+  const textDiv=document.createElement('div');
+  textDiv.innerHTML=`
+    <div class="art-meta">
+      ${FEATURED.tags.map(t=>`<span class="art-tag ${TAGS[t].cls}">${TAGS[t].label}</span>`).join('')}
+      <span class="art-date">${FEATURED.date}</span>
+    </div>
+    <h3 class="art-title">${esc(FEATURED.title)}</h3>
+    <p class="art-excerpt">${esc(FEATURED.excerpt)}</p>
+    <span class="art-read">Ler artigo <span class="art-arrow">→</span></span>`;
+  fa.appendChild(textDiv);
+  const imgWrap=makeCardCanvas('convergence', 220);
+  fa.appendChild(imgWrap);
+  grid.appendChild(fa);
+  setTimeout(()=>fa.classList.add('in'),80);
+
+  // Dynamic
+  arts.forEach((a,i) => {
+    const t=TAGS[a.tag]||TAGS.v;
+    const card=document.createElement('a');
+    card.className='art-card reveal';
+    card.href='#'; card.onclick=e=>{e.preventDefault();openModal(i)};
+    const scene=sceneMap[a.tag]||'neural';
+    card.appendChild(makeCardCanvas(scene, 170));
+    card.innerHTML+=`
+      <div class="art-meta"><span class="art-tag ${t.cls}">${t.label}</span><span class="art-date">${fmtDate(a.date)}</span></div>
+      <h3 class="art-title">${esc(a.title)}</h3>
+      <p class="art-excerpt">${esc(a.excerpt)}</p>
+      <span class="art-read">Ler artigo <span class="art-arrow">→</span></span>`;
+    grid.appendChild(card);
+    setTimeout(()=>card.classList.add('in'),100+i*60);
+  });
+
+  renderPosted();
+  // Responsive featured
+  handleFeaturedResize();
+}
+
+function handleFeaturedResize(){
+  const fa=document.querySelector('.art-card.featured');
+  if(!fa)return;
+  if(window.innerWidth<640){fa.style.gridTemplateColumns='1fr';fa.style.gap='1rem';}
+  else{fa.style.gridTemplateColumns='1fr 1fr';fa.style.gap='2rem';}
+}
+window.addEventListener('resize',handleFeaturedResize);
+
+function renderPosted(){
+  const list=document.getElementById('posted-list');
+  const items=document.getElementById('posted-items');
+  if(!arts.length){list.style.display='none';return}
+  list.style.display='block'; items.innerHTML='';
+  arts.forEach((a,i) => {
+    const t=TAGS[a.tag]||TAGS.v;
+    const row=document.createElement('div'); row.className='pi';
+    row.innerHTML=`<div><div class="pi-t">${esc(a.title)}</div><div class="pi-s">${t.label} · ${fmtDate(a.date)}</div></div><div class="pi-acts"><button class="pbtn del" onclick="del(${i})">Deletar</button></div>`;
+    items.appendChild(row);
+  });
+}
+
+function publish(){
+  const title=document.getElementById('f-title').value.trim();
+  const tag=document.getElementById('f-tag').value;
+  const excerpt=document.getElementById('f-excerpt').value.trim();
+  const body=document.getElementById('f-body').value.trim();
+  if(!title||!excerpt||!body){toast('Preencha todos os campos!');return}
+  arts.unshift({title,tag,excerpt,body,date:new Date().toISOString()});
+  save(); render();
+  document.getElementById('f-title').value='';
+  document.getElementById('f-excerpt').value='';
+  document.getElementById('f-body').value='';
+  toast('Artigo publicado!');
+  document.getElementById('articles').scrollIntoView({behavior:'smooth'});
+}
+
+function del(i){if(!confirm('Deletar?'))return; arts.splice(i,1); save(); render();}
+
+// ══════════════════════════════════════════════
+//  MODAL
+// ══════════════════════════════════════════════
+const modalScenes = {};
+
+function parseBody(raw, forModal=false) {
+  let html='', sceneIdx=0;
+  raw.split('\n\n').forEach(block => {
+    const b=block.trim(); if(!b)return;
+    if(b.startsWith('## ')){
+      const heading=b.slice(3);
+      html+=`<h3>${esc(heading)}</h3>`;
+    } else if(b.startsWith('[SCENE:')){
+      const type=b.slice(7,-1);
+      const id='ms'+(sceneIdx++);
+      html+=`<div class="art-illo" id="illo-wrap-${id}"><canvas id="illo-${id}"></canvas><div class="art-illo-label">Arraste para interagir</div></div>`;
+      if(forModal) setTimeout(()=>{
+        const c=document.getElementById('illo-'+id);
+        if(c&&!modalScenes[id]){
+          modalScenes[id]=new Scene(c,type,{ratio:0.48});
+        }
+      },120+sceneIdx*40);
+    } else {
+      const h=b.replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>');
+      html+=`<p>${h}</p>`;
+    }
+  });
+  return html;
+}
+
+function openModal(id) {
+  Object.values(modalScenes).forEach(s=>s.destroy());
+  Object.keys(modalScenes).forEach(k=>delete modalScenes[k]);
+
+  let title,tags='',date,body,coverType;
+  if(id==='f'){
+    title=FEATURED.title;
+    FEATURED.tags.forEach(t=>{ tags+=`<span class="art-tag ${TAGS[t].cls}">${TAGS[t].label}</span> `; });
+    date=FEATURED.date; body=FEATURED.body; coverType=FEATURED.coverScene;
+  } else {
+    const a=arts[id]; const t=TAGS[a.tag]||TAGS.v;
+    title=a.title; tags=`<span class="art-tag ${t.cls}">${t.label}</span>`;
+    date=fmtDate(a.date); body=a.body; coverType=sceneMap[a.tag]||'neural';
+  }
+
+  const coverId='modal-cover-c';
+  document.getElementById('modal-inner').innerHTML=`
+    <div class="modal-tag-row">${tags}</div>
+    <h2 class="modal-title">${esc(title)}</h2>
+    <div class="modal-byline">Rafael Fernandes · ${date} · São Paulo, Brasil</div>
+    <div class="modal-cover"><canvas id="${coverId}"></canvas><div class="art-illo-label">Arraste para interagir</div></div>
+    <div class="modal-body">${parseBody(body,true)}</div>`;
+
+  setTimeout(()=>{
+    const c=document.getElementById(coverId);
+    if(c) modalScenes['cover']=new Scene(c,coverType,{ratio:.48});
+  },80);
+
+  document.getElementById('modal-bg').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+
+function closeModal(){
+  Object.values(modalScenes).forEach(s=>s.destroy());
+  Object.keys(modalScenes).forEach(k=>delete modalScenes[k]);
+  document.getElementById('modal-bg').classList.remove('open');
+  document.body.style.overflow='';
+}
+function closeBg(e){if(e.target===document.getElementById('modal-bg'))closeModal();}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
+
+// ══════════════════════════════════════════════
+//  ABOUT CANVAS
+// ══════════════════════════════════════════════
+function initAboutCanvas(){
+  const c=document.getElementById('about-canvas');
+  if(c) new Scene(c,'portrait',{square:true,ratio:1.33});
+}
+
+// ══════════════════════════════════════════════
+//  TOAST & REVEAL
+// ══════════════════════════════════════════════
+function toast(msg){
+  const t=document.getElementById('toast');
+  t.textContent=msg; t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),2800);
+}
+
+const obs=new IntersectionObserver(e=>{e.forEach(en=>{if(en.isIntersecting)en.target.classList.add('in')});},{threshold:.08});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+// ══════════════════════════════════════════════
+//  INIT
+// ══════════════════════════════════════════════
+render();
+initAboutCanvas();
+</script>
+</body>
+</html>
